@@ -38,7 +38,6 @@ sound
 music
 notes
 piano
-guitar
 drums
 flute
 vocal
@@ -52,7 +51,6 @@ hands
 knees
 heart
 brain
-nerves
 cells
 blood
 veins
@@ -157,13 +155,11 @@ argue
 arise
 armor
 array
-narrow
 asset
 atlas
 attic
 audio
 audit
-author
 avail
 award
 aware
@@ -300,9 +296,7 @@ daily
 dairy
 daisy
 dandy
-dawn
 death
-debt
 decay
 decor
 deity
@@ -863,7 +857,6 @@ shush
 shyly
 sieve
 siege
-signal
 silky
 silly
 since
@@ -1132,7 +1125,6 @@ tried
 trite
 troll
 troop
-trophy
 truce
 truly
 trump
@@ -1241,7 +1233,6 @@ worth
 wound
 woven
 wrack
-wraith
 wreak
 wring
 wrist
