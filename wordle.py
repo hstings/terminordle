@@ -1,3 +1,8 @@
+import random
+import sys
+from typing import List, Tuple
+from pathlib import Path
+
 print("Welcome to Wordle!")
 print("Guess the 5-letter word.")
 print("You have 6 attempts.")
