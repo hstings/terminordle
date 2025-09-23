@@ -1,1 +1,8 @@
-
+print("Welcome to Wordle!")
+print("Guess the 5-letter word.")
+print("You have 6 attempts.")
+print("After each guess, you'll receive feedback:")
+print(" - 🟩: Correct letter in the correct position")
+print(" - 🟨: Correct letter in the wrong position")
+print(" - ⬜: Letter not in the word")
+print("Let's begin!")
