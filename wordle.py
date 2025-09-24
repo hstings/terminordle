@@ -1,15 +1,27 @@
 import random
 import sys
+import time
 from typing import List, Tuple
 from pathlib import Path
 
-print("Welcome to Wordle!")
-print("Guess the 5-letter word.")
+def printCorrect(s): print("\033[92m["+s+"]\033[00m")
+def printClose(s): print("\033[93m["+s+"]\033[00m")
+def printWrong(s): print("\033[00m["+s+"]\033[00m")
+
+print("Welcome to TERMINORDLE, also known as Terminal Wordle!")
+time.sleep(1)
+print("Your goal: guess the 5-letter word.")
+time.sleep(1.5)
 print("You have 6 attempts.")
+time.sleep(1)
 print("After each guess, you'll receive feedback:")
-print(" - 🟩: Correct letter in the correct position")
-print(" - 🟨: Correct letter in the wrong position")
-print(" - ⬜: Letter not in the word")
+time.sleep(1)
+print(" - \033[92mGREEN\033[00m: Correct letter in the correct position")
+time.sleep(.5)
+print(" - \033[93mYELLOW\033[00m: Correct letter in the wrong position")
+time.sleep(.5)
+print(" - WHITE: Letter not in the word")
+time.sleep(1)
 print("Let's begin!")
 
 def main():
