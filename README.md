@@ -1,2 +1,1 @@
-![WORDLE IGNITE EDITION](logo.png)
-<hr>
+# TERMINORDLE: Terminal Wordle
