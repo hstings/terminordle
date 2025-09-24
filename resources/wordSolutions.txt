@@ -1,4 +1,3 @@
-
 apple
 grape
 peach
@@ -1240,7 +1239,6 @@ write
 wrong
 wrote
 wrung
-yacht
 yearn
 yeast
 yield

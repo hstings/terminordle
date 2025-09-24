@@ -1,29 +1,44 @@
-import random
-import sys
 import time
-from typing import List, Tuple
-from pathlib import Path
+import random
 
 def printCorrect(s): print("\033[92m["+s+"]\033[00m")
 def printClose(s): print("\033[93m["+s+"]\033[00m")
 def printWrong(s): print("\033[00m["+s+"]\033[00m")
 
 print("Welcome to TERMINORDLE, also known as Terminal Wordle!")
-time.sleep(1)
+# time.sleep(1)
 print("Your goal: guess the 5-letter word.")
-time.sleep(1.5)
+# time.sleep(1.5)
 print("You have 6 attempts.")
-time.sleep(1)
+# time.sleep(1)
 print("After each guess, you'll receive feedback:")
-time.sleep(1)
+# time.sleep(1)
 print(" - \033[92mGREEN\033[00m: Correct letter in the correct position")
-time.sleep(.5)
+# time.sleep(.5)
 print(" - \033[93mYELLOW\033[00m: Correct letter in the wrong position")
-time.sleep(.5)
+# time.sleep(.5)
 print(" - WHITE: Letter not in the word")
-time.sleep(1)
+# time.sleep(1)
 print("Let's begin!")
 
+with open("resources/words.txt", "r") as wordFile:
+    targetWords = wordFile.readlines()
+    targetWord = random.choice(targetWords).upper()
+
+print(targetWord)
+
+guesses = 0
+
+while guesses != 6:
+    guessWord = input("Your Word: ")
+    guesses += 1
+    for i in range(len(targetWord)):
+        if targetWord[i] == guessWord[i]:
+            printCorrect(guessWord[i])
+        else:
+            printWrong(guessWord[i])
+
+"""
 def main():
     # Allow passing a custom wordlist path as CLI arg
     path = None
@@ -66,3 +81,4 @@ def main():
             return
 
     print(f"\nOut of guesses — the word was: {target.upper()}. Better luck next time!")
+"""
