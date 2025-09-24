@@ -3884,7 +3884,6 @@ tried
 trite
 troll
 troop
-trophy
 truce
 truly
 trump
@@ -3995,7 +3994,6 @@ worth
 wound
 woven
 wrack
-wraith
 wreak
 wring
 wrist
@@ -4135,10 +4133,8 @@ bench
 beret
 berry
 beset
-beside
 betty
 bevel
-beware
 bidet
 bigot
 biker
@@ -4221,7 +4217,6 @@ brown
 brunt
 brush
 brute
-bubble
 buddy
 budge
 buggy
@@ -4273,7 +4268,6 @@ cheat
 check
 cheek
 cheer
-cheese
 chess
 chest
 chief
@@ -5337,7 +5331,6 @@ worth
 wound
 woven
 wrack
-wraith
 wreak
 wring
 wrist
