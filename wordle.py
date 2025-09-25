@@ -60,7 +60,8 @@ def playWordle(wordList, solutionList):
             print(emptyRow(5))
 
         if guess == targetWord:
-            print("\n🎉 You guessed it!")
+            messages = ["Genius", "Magnificent", "Impressive", "Splendid", "Great", "Phew"]
+            print(messages[attempt - 1])
             return
 
     print(f"\n❌ Out of attempts! The word was '{targetWord.upper()}'.")
