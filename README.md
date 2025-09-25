@@ -7,3 +7,9 @@ The goal of the game is to guess the hidden word in 6 tries. Each guess must be 
 - Playable Wordle game with 5-letter words
 - Visual feedback for correct letters
 - Word validation against the dictionary
+- ✅ Correct letter in the correct position
+- ⚠️ Correct letter in the wrong position
+- ❌ Letter not in the word
+- Tracks number of guesses
+- Input validation (rejects invalid or wrong-length words)
+- Option to restart and play again
