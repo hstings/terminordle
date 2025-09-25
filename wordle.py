@@ -1,84 +1,75 @@
-import time
 import random
 
-def printCorrect(s): print("\033[92m["+s+"]\033[00m")
-def printClose(s): print("\033[93m["+s+"]\033[00m")
-def printWrong(s): print("\033[00m["+s+"]\033[00m")
+def wordleFeedbackSquares(guess, target):
+    green = "\033[42m"
+    yellow = "\033[43m"
+    gray = "\033[100m"
+    reset = "\033[0m"
 
-print("Welcome to TERMINORDLE, also known as Terminal Wordle!")
-# time.sleep(1)
-print("Your goal: guess the 5-letter word.")
-# time.sleep(1.5)
-print("You have 6 attempts.")
-# time.sleep(1)
-print("After each guess, you'll receive feedback:")
-# time.sleep(1)
-print(" - \033[92mGREEN\033[00m: Correct letter in the correct position")
-# time.sleep(.5)
-print(" - \033[93mYELLOW\033[00m: Correct letter in the wrong position")
-# time.sleep(.5)
-print(" - WHITE: Letter not in the word")
-# time.sleep(1)
-print("Let's begin!")
+    result = [""] * len(guess)
+    targetLetters = list(target)
 
-with open("resources/words.txt", "r") as wordFile:
-    targetWords = wordFile.readlines()
-    targetWord = random.choice(targetWords).upper()
+    # First pass: greens
+    for i, ch in enumerate(guess):
+        if ch == target[i]:
+            result[i] = f"{green} {ch.upper()} {reset}"
+            targetLetters[i] = None  # consume
 
-print(targetWord)
+    # Second pass: yellows
+    for i, ch in enumerate(guess):
+        if result[i] == "" and ch in targetLetters:
+            result[i] = f"{yellow} {ch.upper()} {reset}"
+            targetLetters[targetLetters.index(ch)] = None
+        elif result[i] == "":
+            result[i] = f"{gray} {ch.upper()} {reset}"
 
-guesses = 0
+    return " ".join(result)
 
-while guesses != 6:
-    guessWord = input("Your Word: ")
-    guesses += 1
-    for i in range(len(targetWord)):
-        if targetWord[i] == guessWord[i]:
-            printCorrect(guessWord[i])
-        else:
-            printWrong(guessWord[i])
 
-"""
-def main():
-    # Allow passing a custom wordlist path as CLI arg
-    path = None
-    if len(sys.argv) > 1:
-        path = sys.argv[1]
-    else:
-        path = WORDLIST_PATH
+def emptyRow(wordLength):
+    gray = "\033[100m"
+    reset = "\033[0m"
+    return " ".join([f"{gray}   {reset}"] * wordLength)
 
-    words = load_wordlist(path)
-    if not words:
-        print("No 5-letter words available. Please provide a wordlist.")
-        sys.exit(1)
 
-    target = pick_target(words)
-    max_guesses = 6
+def playWordle(wordList, solutionList):
+    targetWord = random.choice(solutionList)
+    guesses = []
+    attempt = 0
 
-    print("Welcome to Terminal Wordle! Guess the 5-letter word in 6 tries.")
-    print("Green = correct place, Yellow = wrong place, Gray = not in word.")
-    # Uncomment to debug/cheat:
-    # print(f"(DEBUG) Target is: {target}")
+    for attempt in range(1, 6):
+        guess = input(f"\nAttempt {attempt}/{6}: ").strip().lower()
 
-    guesses = 0
-    while guesses < max_guesses:
-        guesses += 1
-        while True:
-            guess = input(f"\nGuess {guesses}/{max_guesses}: ").strip().lower()
-            if len(guess) != 5 or not guess.isalpha():
-                print("Please enter a 5-letter word using letters only.")
-                continue
-            if guess not in words:
-                print("Word not in dictionary. Try again.")
-                continue
-            break
+        # Validate guess
+        if len(guess) != 5:
+            print(f"Please enter a {5}-letter word.")
+            continue
+        elif guess not in wordList:
+            print("Not in word list.")
+            continue
 
-        fb = get_feedback(guess, target)
-        print(colored_output(fb))
+        feedback = wordleFeedbackSquares(guess, targetWord)
+        guesses.append(feedback)
 
-        if all(color == "green" for (_l, color) in fb):
-            print(f"\nYou got it in {guesses} guess{'es' if guesses != 1 else ''}! 🎉")
+        # Print full board
+        print("\nYour board:")
+        for g in guesses:
+            print(g)
+            attempt += 1
+        for _ in range(6 - len(guesses)):
+            print(emptyRow(5))
+
+        if guess == targetWord:
+            print("\n🎉 You guessed it!")
             return
 
-    print(f"\nOut of guesses — the word was: {target.upper()}. Better luck next time!")
-"""
+    print(f"\n❌ Out of attempts! The word was '{targetWord.upper()}'.")
+
+with open("resources/words.txt", "r") as f:
+    wordList = [w.strip().lower() for w in f if w.strip()]
+
+with open("resources/wordSolutions.txt", "r") as f:
+    solutionList = [w.strip().lower() for w in f if w.strip()]
+
+print("Welcome to TERMINORDLE, also known as Terminal Wordle! Guess the 5-letter word.")
+playWordle(wordList, solutionList)
